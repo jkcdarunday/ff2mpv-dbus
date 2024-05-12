@@ -11,9 +11,14 @@ import subprocess
 def main():
     message = get_message()
     url = message.get("url")
-    options = message.get("options") or []
 
-    args = ["mpv", "--no-terminal", *options, "--", url]
+    # options are currently unsupported
+    # options = message.get("options") or []
+
+    # replace https with mpv
+    url = url.replace("https://", "mpv://")
+
+    args = ["xdg-open", url]
 
     kwargs = {}
     # https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Native_messaging#Closing_the_native_app

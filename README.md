@@ -1,37 +1,21 @@
-ff2mpv
+ff2mpv-dbus
 ======
+This is fork of ff2mpv-dbus that uses xdg-open to play the video. This allows the extension to work on Wayland and within sandboxes like firejail.
 
-![license](https://raster.shields.io/badge/license-MIT%20with%20restrictions-green.png)
-[![Mozilla Add-on](https://img.shields.io/amo/v/ff2mpv@yossarian.net)](https://addons.mozilla.org/en-US/firefox/addon/ff2mpv/)
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/ephjcajbkgplkjmelpglennepbpmdpjg)](https://chrome.google.com/webstore/detail/ff2mpv/ephjcajbkgplkjmelpglennepbpmdpjg)
-
-This is a browser extension for playing URLs in MPV. It works on Firefox, Chrome and other Firefox or Chromium-based browsers.
-
-Clicking the little icon in your toolbar will make MPV attempt to play the current URL.
-
-If you want to play a specific URL on a page, right click it and click the "Play in MPV"
-context button.
+## Limitations
+Options are currently not passed
 
 ## Usage
+```
+cp ff2mpv.desktop ~/.local/share/applications
 
-**IMPORTANT**: If you update the addon in your browser, **make sure to update the native host as
-well**!
+# Replace $FF2MPV_PATH with the path to the ff2mpv-dbus directory (could also be path to wherever ff2mpv.sh is)
+sed -i 's|$FF2MPV_PATH|'"$(pwd)"'|' ~/.local/share/applications/ff2mpv.desktop
 
-First, install the addon from [AMO](https://addons.mozilla.org/en-US/firefox/addon/ff2mpv/)
-or from the [Chrome Web Store](https://chrome.google.com/webstore/detail/ff2mpv/ephjcajbkgplkjmelpglennepbpmdpjg).
+xdg-mime default ff2mpv.desktop x-scheme-handler/mpv
+```
 
-Then, follow your system's installation directions on the Wiki:
-
-Linux: https://github.com/woodruffw/ff2mpv/wiki/Installation-on-Linux
-
-macOS: https://github.com/woodruffw/ff2mpv/wiki/Installation-on-macOS
-
-Windows: https://github.com/woodruffw/ff2mpv/wiki/Installation-on-Windows
-
-The following community-maintained native clients are also available:
-
-* [Rust](https://github.com/ryze312/ff2mpv-rust)
-* [Go](https://git.clsr.net/util/ff2mpv-go/)
+Lastly, edit your ~/.mozilla/native-messaging-hosts/ff2mpv.json to point to the python script in this repository.
 
 ## License
 

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=ff2mpv DBUS
+Exec=$FF2MPV_PATH/ff2mpv.sh %u
+Type=Application
+Terminal=false
+NoDisplay=true
+MimeType=x-scheme-handler/mpv
